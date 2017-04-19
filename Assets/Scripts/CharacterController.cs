@@ -19,4 +19,12 @@ public class CharacterController : MonoBehaviour {
 		transform.LookAt(mouseWorldSpace, upAxis);
 		transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,0);
 	}
+
+	void OnCollisionEnter(Collision col)
+	{
+		if (col.collider.tag == "Enemy") {
+			transform.GetComponent<PlayerHealth> ().AffectHealth (-1);
+			Destroy (col.gameObject);
+		}
+	}
 }
