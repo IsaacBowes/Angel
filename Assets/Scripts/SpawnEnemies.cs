@@ -23,7 +23,7 @@ public class SpawnEnemies : MonoBehaviour {
 			RandomX = -17;
 		else
 			RandomX = 17;
-		GameObject obj = Instantiate (Resources.Load ("Enemy"), new Vector3 (RandomX, 0, Random.Range(-18, 18)), Quaternion.Euler(0, 0, 0)) as GameObject;
+		GameObject obj = Instantiate (Resources.Load ("Tier3Enemy"), new Vector3 (RandomX, 0, Random.Range(-18, 18)), Quaternion.Euler(0, 0, 0)) as GameObject;
 		obj.GetComponent<Enemy> ().player = player;
 	}
 }

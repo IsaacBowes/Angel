@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour {
 
+	public int Bullets;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -11,20 +13,23 @@ public class PlayerShoot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown (0)) {
-			GameObject bullet = Instantiate (Resources.Load ("Bullet"), transform.position, Quaternion.Euler (0, 0, 0)) as GameObject;
-			bullet.transform.rotation = transform.rotation;
-			bullet.transform.position += transform.forward * 8;
+		if (Bullets > 0) {
+			if (Input.GetMouseButtonDown (0)) {
+				Bullets--;
+				GameObject bullet = Instantiate (Resources.Load ("Bullet"), transform.position, Quaternion.Euler (0, 0, 0)) as GameObject;
+				bullet.transform.rotation = transform.rotation;
+				bullet.transform.position += transform.forward * 8;
 
-			RaycastHit[] hits;
-			hits = Physics.RaycastAll (transform.position, transform.forward, 100);
-			for (int i = 0; i < hits.Length; i++) {
-				RaycastHit hit = hits [i];
-				//hit.collider.GetComponent<Health> ().health -= 1;
-				Destroy(hit.collider.gameObject, 0.2f);
+				RaycastHit[] hits;
+				hits = Physics.RaycastAll (transform.position, transform.forward, 100);
+				for (int i = 0; i < hits.Length; i++) {
+					RaycastHit hit = hits [i];
+					if (hit.collider.GetComponent<EnemyHealth> ()) {
+						hit.collider.GetComponent<EnemyHealth> ().AffectHealth (-1);
+					}
+				}
+				Destroy (bullet, 1);
 			}
-
-			Destroy (bullet, 1);
 		}
 	}
 }
