@@ -17,6 +17,6 @@ public class CharacterController : MonoBehaviour {
 		mouseScreenPosition.z = transform.position.z;
 		Vector3 mouseWorldSpace = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
 		transform.LookAt(mouseWorldSpace, upAxis);
-		transform.eulerAngles = new Vector3(0,0,-transform.eulerAngles.z);
+		transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,0);
 	}
 }
