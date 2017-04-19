@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour {
-	
+
+	public GameObject player;
 
 	// Use this for initialization
 	void Start () {
-		SpawnEnemy ();
+		InvokeRepeating ("SpawnEnemy", 1f, 2.0f);
 	}
 	
 	// Update is called once per frame
@@ -17,6 +18,13 @@ public class SpawnEnemies : MonoBehaviour {
 
 	void SpawnEnemy()
 	{
-		Instantiate (Resources.Load ("Enemy"), new Vector3 (-17, 0, Random.Range(-18, 18)), Quaternion.Euler(0, 0, 0));
+		float RandomX = Random.Range (0, 2);
+		if (RandomX == 0)
+			RandomX = -17;
+		else
+			RandomX = 17;
+		GameObject obj = Instantiate (Resources.Load ("Enemy"), new Vector3 (RandomX, 0, Random.Range(-18, 18)), Quaternion.Euler(0, 0, 0)) as GameObject;
+		Debug.Log (RandomX);
+		obj.GetComponent<Enemy> ().player = player;
 	}
 }
