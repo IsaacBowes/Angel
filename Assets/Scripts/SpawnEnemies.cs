@@ -8,7 +8,7 @@ public class SpawnEnemies : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		InvokeRepeating ("SpawnEnemy", 1f, 2.0f);
+		InvokeRepeating ("SpawnEnemy", 1f, .5f);
 	}
 	
 	// Update is called once per frame
@@ -24,7 +24,6 @@ public class SpawnEnemies : MonoBehaviour {
 		else
 			RandomX = 17;
 		GameObject obj = Instantiate (Resources.Load ("Enemy"), new Vector3 (RandomX, 0, Random.Range(-18, 18)), Quaternion.Euler(0, 0, 0)) as GameObject;
-		Debug.Log (RandomX);
 		obj.GetComponent<Enemy> ().player = player;
 	}
 }
