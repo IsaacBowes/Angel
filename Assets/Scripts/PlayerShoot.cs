@@ -24,14 +24,21 @@ public class PlayerShoot : MonoBehaviour {
 					bullet.transform.rotation = transform.rotation;
 					bullet.transform.position += transform.forward * 8;
 
-					RaycastHit[] hits;
-					hits = Physics.RaycastAll (transform.position, transform.forward, 100);
-					for (int i = 0; i < hits.Length; i++) {
-						RaycastHit hit = hits [i];
+					RaycastHit hit;
+					Ray ray;
+					if (Physics.Raycast (transform.position, transform.forward, out hit, 100)) {
 						if (hit.collider.GetComponent<EnemyHealth> ()) {
 							hit.collider.GetComponent<EnemyHealth> ().AffectHealth (-1);
 						}
 					}
+//					RaycastHit[] hits;
+//					hits = Physics.RaycastAll (transform.position, transform.forward, 100);
+//					for (int i = 0; i < hits.Length; i++) {
+//						RaycastHit hit = hits [i];
+//						if (hit.collider.GetComponent<EnemyHealth> ()) {
+//							hit.collider.GetComponent<EnemyHealth> ().AffectHealth (-1);
+//						}
+//					}
 					Destroy (bullet, 1);
 				}
 			}
