@@ -13,7 +13,6 @@ public abstract class Health : MonoBehaviour
     [Tooltip("Is agent dead or not")]
     public bool isDead;
 
-
     public delegate void HealthEvent();
     public event HealthEvent OnDeath;
     public event HealthEvent OnHealthChange;
