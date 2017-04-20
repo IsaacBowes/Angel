@@ -5,8 +5,11 @@ using System;
 
 public class PlayerHealth : Health
 {
+    CharacterController charControl;
+    GameObject player;
+
     public override void Death()
     {
-        throw new NotImplementedException();
+
     }
 }
