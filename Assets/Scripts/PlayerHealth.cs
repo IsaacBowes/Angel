@@ -10,12 +10,6 @@ public class PlayerHealth : Health
 
     public override void Death()
     {
-        
-    }
-
-    void Update()
-    {
 
     }
-
 }
