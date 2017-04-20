@@ -66,6 +66,5 @@ public class SpawnEnemies : MonoBehaviour {
 	void AddEnemy(string str, float RandomX)
 	{
 		GameObject obj = Instantiate (Resources.Load (str), new Vector3 (RandomX, 0, UnityEngine.Random.Range (-18, 18)), Quaternion.Euler (0, 0, 0)) as GameObject;
-		obj.GetComponent<Enemy> ().player = player;
 	}
 }
