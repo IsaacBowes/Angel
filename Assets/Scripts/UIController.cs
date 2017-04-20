@@ -11,7 +11,7 @@ public class UIController : MonoBehaviour
     private bool paused;
     private int state = 1;
 
-
+    GameObject[] pauseObjects;
 
 
     public PlayerHealth playerHealth;
@@ -20,6 +20,10 @@ public class UIController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Time.timeScale = 1;
+        pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
+        hidePaused();
+
         if (GameObject.FindGameObjectWithTag("Player"))
         {
             player = GameObject.FindGameObjectWithTag("Player");
@@ -28,6 +32,7 @@ public class UIController : MonoBehaviour
             {
                 playerHealth.OnDeath += GameOverActive;
             }
+            PauseMenu.SetActive(false);
             gameOverPanel.SetActive(false);
         }
         else
@@ -39,9 +44,20 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("Escape"))
+        //uses the p button to pause and unpause the game
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
         {
-            togglePause();
+            if (Time.timeScale == 1)
+            {
+                Time.timeScale = 0;
+                showPaused();
+            }
+            else if (Time.timeScale == 0)
+            {
+                Debug.Log("high");
+                Time.timeScale = 1;
+                hidePaused();
+            }
         }
     }
 
@@ -63,21 +79,25 @@ public class UIController : MonoBehaviour
         Application.Quit();
     }
 
-    public void togglePause()
+    //shows objects with ShowOnPause tag
+    public void showPaused()
     {
-        // not the optimal way but for the sake of readability
-        if (PauseMenu.GetComponentInChildren<Canvas>().enabled)
+        foreach (GameObject g in pauseObjects)
         {
-            PauseMenu.GetComponentInChildren<Canvas>().enabled = false;
-            Time.timeScale = 1.0f;
-        }
-        else
-        {
-            PauseMenu.GetComponentInChildren<Canvas>().enabled = true;
-            Time.timeScale = 0f;
-        }
+            //g.SetActive(true);
+            PauseMenu.SetActive(true);
 
-        Debug.Log("TimeScale: " + Time.timeScale);
+        }
+    }
+
+    //hides objects with ShowOnPause tag
+    public void hidePaused()
+    {
+        foreach (GameObject g in pauseObjects)
+        {
+            //g.SetActive(false);
+            PauseMenu.SetActive(false);
+        }
     }
 
     public void LoadLevel()
