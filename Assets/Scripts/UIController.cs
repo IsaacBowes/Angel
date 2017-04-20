@@ -5,9 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
-
     public GameObject gameOverPanel;
-    public GameObject pauseMenu;
+    public GameObject PauseMenu;
+
+    private bool paused;
+    private int state = 1;
+
+
+
 
     public PlayerHealth playerHealth;
     public GameObject player;
@@ -31,13 +36,21 @@ public class UIController : MonoBehaviour
         }
     }
 
+
+    void Update()
+    {
+        if (Input.GetKeyDown("Escape"))
+        {
+            togglePause();
+        }
+    }
+
     void OnDestroy()
     {
         if (playerHealth != null)
         {
             playerHealth.OnDeath -= GameOverActive;
         }
-
     }
 
     void GameOverActive()
@@ -48,8 +61,23 @@ public class UIController : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
 
+    public void togglePause()
+    {
+        // not the optimal way but for the sake of readability
+        if (PauseMenu.GetComponentInChildren<Canvas>().enabled)
+        {
+            PauseMenu.GetComponentInChildren<Canvas>().enabled = false;
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            PauseMenu.GetComponentInChildren<Canvas>().enabled = true;
+            Time.timeScale = 0f;
+        }
 
+        Debug.Log("TimeScale: " + Time.timeScale);
     }
 
     public void LoadLevel()

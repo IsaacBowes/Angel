@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class ImageFillBar : MonoBehaviour
+public class FillFillBar : MonoBehaviour
 {
     public enum Alignment { left, top, right, bottom };
 
