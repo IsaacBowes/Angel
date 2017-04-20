@@ -27,6 +27,7 @@ public class Waves : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (roundstarted) {
+			spawnenemies.CancelInvoke ();
 			spawnenemies.InvokeRepeating("SpawnEnemy", 1f, waves[WaveNumber].SpawnRate);
 			TotalEnemiesInWave = (waves [WaveNumber].Tier1EnemyAmount + waves [WaveNumber].Tier2EnemyAmount + waves [WaveNumber].Tier3EnemyAmount);
 			roundstarted = false;

@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		agent = GetComponent<NavMeshAgent> ();
+		player = GameObject.FindGameObjectWithTag ("Player");
 	}
 	
 	// Update is called once per frame
