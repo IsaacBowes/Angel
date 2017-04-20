@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour {
 
+	Waves waves;
+
 
 	// Use this for initialization
-	void Start ()
-    {
-		
+	void Start () {
+		waves = GameObject.FindGameObjectWithTag ("WaveManager").GetComponent<Waves> ();
 	}
 	
 	// Update is called once per frame
@@ -25,7 +26,8 @@ public class CharacterController : MonoBehaviour {
 	{
 		if (col.collider.tag == "Enemy") {
 			transform.GetComponent<PlayerHealth> ().AffectHealth (-1);
-			transform.GetComponent<PlayerShoot>().Bullets += (col.collider.gameObject.GetComponent<EnemyHealth> ().ammoDrop * 2);
+			transform.GetComponent<PlayerShoot>().Bullets += (col.collider.gameObject.GetComponent<EnemyHealth> ().ammoDrop + 1);
+			waves.TotalEnemiesInWave -= 1;
 			Destroy (col.gameObject);
 		}
 	}
