@@ -6,11 +6,10 @@ public class SpawnEnemies : MonoBehaviour {
 
 	public GameObject player;
 	public Waves waves;
-	public float SpawnRate;
 
 	// Use this for initialization
 	void Start () {
-		InvokeRepeating ("SpawnEnemy", 1f, SpawnRate);
+		
 	}
 	
 	// Update is called once per frame

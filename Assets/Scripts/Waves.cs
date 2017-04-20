@@ -8,6 +8,7 @@ public class AllWaves {
 	public int Tier3EnemyAmount;
 	public int Tier2EnemyAmount;
 	public int Tier1EnemyAmount;
+	public float SpawnRate;
 }
 
 public class Waves : MonoBehaviour {
@@ -16,6 +17,7 @@ public class Waves : MonoBehaviour {
 	public AllWaves[] waves;
 	public int WaveNumber;
 	bool roundstarted = true;
+	public SpawnEnemies spawnenemies;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +27,7 @@ public class Waves : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (roundstarted) {
+			spawnenemies.InvokeRepeating("SpawnEnemy", 1f, waves[WaveNumber].SpawnRate);
 			TotalEnemiesInWave = (waves [WaveNumber].Tier1EnemyAmount + waves [WaveNumber].Tier2EnemyAmount + waves [WaveNumber].Tier3EnemyAmount);
 			roundstarted = false;
 		}
