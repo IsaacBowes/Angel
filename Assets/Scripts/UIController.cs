@@ -39,7 +39,7 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("Escape"))
+		if (Input.GetKeyDown(KeyCode.Escape))
         {
             togglePause();
         }
