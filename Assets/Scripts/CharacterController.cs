@@ -24,6 +24,7 @@ public class CharacterController : MonoBehaviour {
 	{
 		if (col.collider.tag == "Enemy") {
 			transform.GetComponent<PlayerHealth> ().AffectHealth (-1);
+			transform.GetComponent<PlayerShoot>().Bullets += (col.collider.gameObject.GetComponent<EnemyHealth> ().ammoDrop * 2);
 			Destroy (col.gameObject);
 		}
 	}

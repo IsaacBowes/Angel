@@ -7,6 +7,6 @@ public class PlayerHealth : Health
 {
     public override void Death()
     {
-        throw new NotImplementedException();
+       
     }
 }

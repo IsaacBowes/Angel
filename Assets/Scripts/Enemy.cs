@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour {
 
 	NavMeshAgent agent;
 	public GameObject player;
+	public float speed;
 
 	// Use this for initialization
 	void Start () {
@@ -16,5 +17,6 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		agent.destination = player.transform.position;
+		agent.speed = speed;
 	}
 }
