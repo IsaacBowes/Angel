@@ -7,10 +7,11 @@ public class SpawnEnemies : MonoBehaviour {
 
 	public GameObject player;
 	public Waves waves;
+	public float SpawnRate;
 
 	// Use this for initialization
 	void Start () {
-		InvokeRepeating ("SpawnEnemy", 1f, .5f);
+		InvokeRepeating ("SpawnEnemy", 1f, SpawnRate);
 	}
 	
 	// Update is called once per frame
@@ -20,29 +21,47 @@ public class SpawnEnemies : MonoBehaviour {
 
 	void SpawnEnemy()
 	{
-		if (waves.TotalEnemiesInWave > 0) {
-			float RandomX = UnityEngine.Random.Range (0, 2);
-			if (RandomX == 0)
-				RandomX = -17;
-			else
-				RandomX = 17;
-			int ChoseEnemy = UnityEngine.Random.Range (0, 3);
-			if (ChoseEnemy == 0) {
-				if (waves.waves [waves.WaveNumber].Tier3EnemyAmount > 0) {
-					AddEnemy ("Tier3Enemy", RandomX);
-					waves.waves [waves.WaveNumber].Tier3EnemyAmount -= 1;
-				}
-			} else if (ChoseEnemy == 1) {
-				if (waves.waves [waves.WaveNumber].Tier2EnemyAmount > 0) {
-					AddEnemy ("Tier2Enemy", RandomX);
-					waves.waves [waves.WaveNumber].Tier2EnemyAmount -= 1;
-				}
-			} else {
-				if (waves.waves [waves.WaveNumber].Tier1EnemyAmount > 0) {
-					AddEnemy ("Tier1Enemy", RandomX);
-					waves.waves [waves.WaveNumber].Tier1EnemyAmount -= 1;
-				}
-			}
+		SpawnTier1 ();
+		SpawnTier2 ();
+		SpawnTier3 ();
+	}
+
+	void SpawnTier3()
+	{
+		float RandomX = UnityEngine.Random.Range (0, 2);
+		if (RandomX == 0)
+			RandomX = -17;
+		else
+			RandomX = 17;
+		if (waves.waves [waves.WaveNumber].Tier3EnemyAmount > 0) {
+			AddEnemy ("Tier3Enemy", RandomX);
+			waves.waves [waves.WaveNumber].Tier3EnemyAmount -= 1;
+		}
+	}
+
+	void SpawnTier2()
+	{
+		float RandomX = UnityEngine.Random.Range (0, 2);
+		if (RandomX == 0)
+			RandomX = -17;
+		else
+			RandomX = 17;
+		if (waves.waves [waves.WaveNumber].Tier2EnemyAmount > 0) {
+			AddEnemy ("Tier2Enemy", RandomX);
+			waves.waves [waves.WaveNumber].Tier2EnemyAmount -= 1;
+		}
+	}
+
+	void SpawnTier1()
+	{
+		float RandomX = UnityEngine.Random.Range (0, 2);
+		if (RandomX == 0)
+			RandomX = -17;
+		else
+			RandomX = 17;
+		if (waves.waves [waves.WaveNumber].Tier1EnemyAmount > 0) {
+			AddEnemy ("Tier1Enemy", RandomX);
+			waves.waves [waves.WaveNumber].Tier1EnemyAmount -= 1;
 		}
 	}
 
