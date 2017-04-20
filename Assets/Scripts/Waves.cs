@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 [Serializable]
@@ -18,6 +19,7 @@ public class Waves : MonoBehaviour {
 	public int WaveNumber;
 	bool roundstarted = true;
 	public SpawnEnemies spawnenemies;
+    public Text uitext;
 
 	// Use this for initialization
 	void Start () {
@@ -36,5 +38,10 @@ public class Waves : MonoBehaviour {
 			WaveNumber++;
 			roundstarted = true;
 		}
-	}
+        if (uitext != null)
+        {
+            uitext.text = WaveNumber.ToString();
+        }
+
+    }
 }

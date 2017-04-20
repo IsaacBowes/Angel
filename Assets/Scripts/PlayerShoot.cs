@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerShoot : MonoBehaviour {
 
-	public int Bullets;
+    public Text uitext;
+    public int Bullets;
 	public float cooldown;
 	float counter = 11;
 
@@ -40,7 +42,12 @@ public class PlayerShoot : MonoBehaviour {
                     //	}
                     //}
                     Destroy (bullet, 1);
-				}
+
+                    if (uitext != null)
+                    {
+                        uitext.text = Bullets.ToString();
+                    }
+                }
 			}
 		}
 	}
