@@ -19,6 +19,6 @@ public class EnemyHealth : Health
     {
 		playerShoot.Bullets += ammoDrop;
 		waves.TotalEnemiesInWave -= 1;
-		Destroy (gameObject, 0.2f);
+		Destroy (gameObject);
     }
 }
