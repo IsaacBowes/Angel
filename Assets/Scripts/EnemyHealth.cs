@@ -19,8 +19,6 @@ public class EnemyHealth : Health
     {
 		playerShoot.Bullets += ammoDrop;
 		waves.TotalEnemiesInWave -= 1;
-		GameObject particle = Instantiate (Resources.Load ("FlashRing02"), transform.position, Quaternion.Euler (0, 0, 0)) as GameObject;
-		Destroy (particle, 3);
 		Destroy (gameObject);
     }
 }
