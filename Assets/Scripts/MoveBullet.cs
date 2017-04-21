@@ -22,6 +22,7 @@ public class MoveBullet : MonoBehaviour {
 			GameObject particle = Instantiate (Resources.Load ("Burst"), col.transform.position, Quaternion.Euler (0, 0, 0)) as GameObject;
 			Destroy (particle, 3);
 			Destroy (gameObject);
+			Destroy (col.gameObject);
 		} else if (col.tag == "Enemy") {
 			GameObject particle = Instantiate (Resources.Load ("Burst"), col.transform.position, Quaternion.Euler (0, 0, 0)) as GameObject;
 			Destroy (particle, 3);
