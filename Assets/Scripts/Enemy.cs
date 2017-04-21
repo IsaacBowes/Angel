@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour {
 			agent.speed = speed;
 		} else {
 			transform.position = Vector3.MoveTowards (transform.position, player.transform.position, (speed / 50));
+			transform.LookAt (player.transform.position);
 		}
 	}
 

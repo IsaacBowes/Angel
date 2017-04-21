@@ -7,6 +7,8 @@ public class SpawnRocks : MonoBehaviour {
 	int counter = 1;
 	float timer = 0;
 	int randomtime = 0;
+	public float SpawnMin;
+	public float SpawnMax;
 
 	// Use this for initialization
 	void Start () {
@@ -29,7 +31,7 @@ public class SpawnRocks : MonoBehaviour {
 
 	void SpawnRock()
 	{
-		GameObject rock = Instantiate (Resources.Load ("Rock"), new Vector3 (20, 0, Random.Range (-20, 20)), Quaternion.Euler (0, 0, 0)) as GameObject;
+		GameObject rock = Instantiate (Resources.Load ("Rock"), new Vector3 (20, -.59f, Random.Range (-20, 20)), Quaternion.Euler (0, 0, 0)) as GameObject;
 		rock.transform.parent = transform;
 		counter++;
 		randomtime = Random.Range (10, 20);
