@@ -9,10 +9,14 @@ public class PlayerShoot : MonoBehaviour {
 	public float cooldown;
 	float counter = 11;
 	public Waves waves; 
+	public AudioClip ShootSound;
+	public AudioClip HealthShootSound;
+	public AudioClip EnemyDieSound;
+	AudioSource aS;
 
 	// Use this for initialization
 	void Start () {
-		
+		aS = transform.GetComponent<AudioSource> ();	
 	}
 	
 	// Update is called once per frame
@@ -24,10 +28,12 @@ public class PlayerShoot : MonoBehaviour {
 					Bullets--;
 					GameObject bullet = Instantiate (Resources.Load ("Bullet"), transform.position, Quaternion.Euler (0, 0, 0)) as GameObject;
 					bullet.transform.rotation = transform.rotation;
+					aS.PlayOneShot (ShootSound);
 				}
 			}
 			if (Input.GetMouseButtonDown (1)) {
 				if (transform.GetComponent<PlayerHealth> ().health > 0) {
+					aS.PlayOneShot (HealthShootSound);
 					transform.GetComponent<PlayerHealth> ().AffectHealth (-1);
 					RaycastHit[] hits;
 					hits = Physics.RaycastAll (transform.position, transform.forward, 100);
@@ -37,6 +43,7 @@ public class PlayerShoot : MonoBehaviour {
 					for (int i = 0; i < hits.Length; i++) {
 						RaycastHit hit = hits [i];
 						if (hit.collider.GetComponent<EnemyHealth> ()) {
+							aS.PlayOneShot (EnemyDieSound);
 							Destroy (hit.collider.gameObject, .2f);
 							waves.TotalEnemiesInWave -= 1;
 							Bullets += hit.collider.GetComponent<EnemyHealth> ().ammoDrop;
