@@ -20,10 +20,11 @@ public class Waves : MonoBehaviour {
 	bool roundstarted = true;
 	public SpawnEnemies spawnenemies;
     public Text uitext;
+	PlayerShoot player;
 
 	// Use this for initialization
 	void Start () {
-		
+		player = transform.GetComponent<PlayerShoot> ();
 	}
 
 
@@ -37,6 +38,7 @@ void Update () {
 		}
 		if (TotalEnemiesInWave <= 0) {
 			WaveNumber++;
+			player.Bullets += 3;
 			roundstarted = true;
 			if (WaveNumber == waves.Length) {
 				WaveNumber = waves.Length - 1;
