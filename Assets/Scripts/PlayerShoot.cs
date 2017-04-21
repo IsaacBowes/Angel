@@ -25,7 +25,7 @@ public class PlayerShoot : MonoBehaviour {
 					GameObject bullet = Instantiate (Resources.Load ("Bullet"), transform.position, Quaternion.Euler (0, 0, 0)) as GameObject;
 					bullet.transform.rotation = transform.rotation;
 					if (uitext != null) {
-						uitext.text = Bullets.ToString ();
+						uitext.text = Bullets.ToString();
 					}
 				}
 			}
