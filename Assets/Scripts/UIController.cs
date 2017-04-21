@@ -108,4 +108,9 @@ public class UIController : MonoBehaviour
     {
         SceneManager.LoadScene("Scene1");
     }
+
+    public void ToMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }
