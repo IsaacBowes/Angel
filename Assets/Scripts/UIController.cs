@@ -8,7 +8,7 @@ public class UIController : MonoBehaviour
     public GameObject gameOverPanel;
     public GameObject PauseMenu;
 
-    GameObject playerShoot;
+    public GameObject playerShoot;
 
     private bool paused;
     private int state = 1;
