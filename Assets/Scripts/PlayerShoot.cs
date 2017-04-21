@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerShoot : MonoBehaviour {
 
-	public int Bullets;
+    public Text uitext;
+    public int Bullets;
 	public float cooldown;
 	float counter = 11;
 
@@ -22,13 +24,15 @@ public class PlayerShoot : MonoBehaviour {
 					Bullets--;
 					GameObject bullet = Instantiate (Resources.Load ("Bullet"), transform.position, Quaternion.Euler (0, 0, 0)) as GameObject;
 					bullet.transform.rotation = transform.rotation;
-//                    RaycastHit hit;
-//                    if (Physics.Raycast(transform.position, transform.forward, out hit, 100))
-//                    {
-//                        if (hit.collider.GetComponent<EnemyHealth> ()) {
-//                        	hit.collider.GetComponent<EnemyHealth> ().AffectHealth (-1);
-//                        }
-//                    }
+					bullet.transform.position += transform.forward * 8;
+
+                    RaycastHit hit;
+                    if (Physics.Raycast(transform.position, transform.forward, out hit, 100))
+                    {
+                        if (hit.collider.GetComponent<EnemyHealth> ()) {
+                        	hit.collider.GetComponent<EnemyHealth> ().AffectHealth (-1);
+                        }
+                    }
                     //RaycastHit[] hits;
                     //hits = Physics.RaycastAll (transform.position, transform.forward, 100);
                     //for (int i = 0; i < hits.Length; i++) {
@@ -37,7 +41,13 @@ public class PlayerShoot : MonoBehaviour {
                     //		hit.collider.GetComponent<EnemyHealth> ().AffectHealth (-1);
                     //	}
                     //}
-				}
+                    Destroy (bullet, 1);
+
+                    if (uitext != null)
+                    {
+                        uitext.text = Bullets.ToString();
+                    }
+                }
 			}
 		}
 	}
