@@ -15,4 +15,12 @@ public class MoveBullet : MonoBehaviour {
 	void Update () {
 		transform.Translate(transform.forward * Time.deltaTime * bulletSpeed, Space.World);
 	}
+
+	void OnTriggerEnter(Collider col)
+	{
+		if (col.tag == "Rock") {
+			Destroy (gameObject);
+		}
+	}
+
 }

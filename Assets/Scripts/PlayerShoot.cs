@@ -18,28 +18,33 @@ public class PlayerShoot : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (counter > cooldown) {
-			if (Bullets > 0) {
-				if (Input.GetMouseButtonDown (0)) {
+			if (Input.GetMouseButtonDown (0)) {
+				if (Bullets > 0) {
 					counter = 0;
 					Bullets--;
 					GameObject bullet = Instantiate (Resources.Load ("Bullet"), transform.position, Quaternion.Euler (0, 0, 0)) as GameObject;
 					bullet.transform.rotation = transform.rotation;
-
-                    //RaycastHit[] hits;
-                    //hits = Physics.RaycastAll (transform.position, transform.forward, 100);
-                    //for (int i = 0; i < hits.Length; i++) {
-                    //	RaycastHit hit = hits [i];
-                    //	if (hit.collider.GetComponent<EnemyHealth> ()) {
-                    //		hit.collider.GetComponent<EnemyHealth> ().AffectHealth (-1);
-                    //	}
-                    //}
-                    Destroy (bullet, 1);
-
-                    if (uitext != null)
-                    {
-                        uitext.text = Bullets.ToString();
-                    }
-                }
+					if (uitext != null) {
+						uitext.text = Bullets.ToString ();
+					}
+				}
+			}
+			if (Input.GetMouseButtonDown (1)) {
+				if (transform.GetComponent<PlayerHealth> ().health > 0) {
+					transform.GetComponent<PlayerHealth> ().AffectHealth (-1);
+					RaycastHit[] hits;
+					hits = Physics.RaycastAll (transform.position, transform.forward, 100);
+					GameObject bullet = Instantiate (Resources.Load ("CollatBullet"), transform.position, Quaternion.Euler (0, 0, 0)) as GameObject;
+					bullet.transform.rotation = transform.rotation;
+					bullet.transform.position += transform.forward * 8;
+					for (int i = 0; i < hits.Length; i++) {
+						RaycastHit hit = hits [i];
+						if (hit.collider.GetComponent<EnemyHealth> ()) {
+							Destroy (hit.collider.gameObject, .2f);
+							//hit.collider.GetComponent<EnemyHealth> ().AffectHealth (-1);
+						} 
+					}
+				}
 			}
 		}
 	}
