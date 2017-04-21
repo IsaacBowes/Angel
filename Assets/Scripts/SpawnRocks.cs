@@ -32,11 +32,11 @@ public class SpawnRocks : MonoBehaviour {
 	void SpawnRock()
 	{
 		GameObject rock = Instantiate (Resources.Load ("Rock"), new Vector3 (20, -.59f, Random.Range (-20, 20)), Quaternion.Euler (0, 0, 0)) as GameObject;
-		float random = Random.Range (0.1f, 0.3f);
+		float random = Random.Range (0.25f, 0.6f);
 		rock.transform.parent = transform;
 		rock.transform.localScale = new Vector3 (random, random, random);
 		rock.transform.Rotate(0, Random.Range (0, 360), 0);
-		if (rock.transform.position.z < 1.3f && rock.transform.position.z > -3.51f) {
+		if (rock.transform.position.z < 3.2f && rock.transform.position.z > -6.4f) {
 			Destroy (rock.gameObject);
 		}
 		counter++;
