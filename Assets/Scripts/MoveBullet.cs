@@ -19,7 +19,12 @@ public class MoveBullet : MonoBehaviour {
 	void OnTriggerEnter(Collider col)
 	{
 		if (col.tag == "Rock") {
+			GameObject particle = Instantiate (Resources.Load ("Burst"), col.transform.position, Quaternion.Euler (0, 0, 0)) as GameObject;
+			Destroy (particle, 3);
 			Destroy (gameObject);
+		} else if (col.tag == "Enemy") {
+			GameObject particle = Instantiate (Resources.Load ("Burst"), col.transform.position, Quaternion.Euler (0, 0, 0)) as GameObject;
+			Destroy (particle, 3);
 		}
 	}
 
