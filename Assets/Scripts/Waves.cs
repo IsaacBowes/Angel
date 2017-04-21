@@ -35,6 +35,9 @@ public class Waves : MonoBehaviour {
 		if (TotalEnemiesInWave <= 0) {
 			WaveNumber++;
 			roundstarted = true;
+			if (WaveNumber == waves.Length) {
+				WaveNumber = waves.Length - 1;
+			}
 		}
 	}
 }
