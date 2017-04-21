@@ -24,7 +24,7 @@ public class Waves : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		player = transform.GetComponent<PlayerShoot> ();
+		player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerShoot> ();
 	}
 
 
