@@ -8,6 +8,8 @@ public class UIController : MonoBehaviour
     public GameObject gameOverPanel;
     public GameObject PauseMenu;
 
+    GameObject playerShoot;
+
     private bool paused;
     private int state = 1;
 
@@ -55,7 +57,6 @@ public class UIController : MonoBehaviour
             else if (Time.timeScale == 0)
             {
                 Debug.Log("high");
-                Time.timeScale = 1;
                 hidePaused();
             }
         }
@@ -86,7 +87,8 @@ public class UIController : MonoBehaviour
         {
             //g.SetActive(true);
             PauseMenu.SetActive(true);
-
+            Time.timeScale = 0;
+            playerShoot.SetActive(false);
         }
     }
 
@@ -97,6 +99,8 @@ public class UIController : MonoBehaviour
         {
             //g.SetActive(false);
             PauseMenu.SetActive(false);
+            Time.timeScale = 1;
+            playerShoot.SetActive(true);
         }
     }
 

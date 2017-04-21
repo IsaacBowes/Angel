@@ -25,9 +25,10 @@ public class Waves : MonoBehaviour {
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+
+// Update is called once per frame
+void Update () {
 		if (roundstarted) {
 			spawnenemies.CancelInvoke ();
 			spawnenemies.InvokeRepeating("SpawnEnemy", 1f, waves[WaveNumber].SpawnRate);
@@ -38,9 +39,10 @@ public class Waves : MonoBehaviour {
 			WaveNumber++;
 			roundstarted = true;
 		}
+        
         if (uitext != null)
         {
-            uitext.text = WaveNumber.ToString();
+            uitext.text = int2roman.convert(WaveNumber+1);
         }
 
     }
