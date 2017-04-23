@@ -38,7 +38,7 @@ void Update () {
 		}
 		if (TotalEnemiesInWave <= 0) {
 			WaveNumber++;
-			player.Bullets += 3;
+			player.Bullets += 1;
 			roundstarted = true;
 			if (WaveNumber == waves.Length) {
 				WaveNumber = waves.Length - 1;
