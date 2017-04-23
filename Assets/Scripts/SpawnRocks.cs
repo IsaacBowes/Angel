@@ -37,7 +37,7 @@ public class SpawnRocks : MonoBehaviour {
 		rock.transform.parent = transform;
 		rock.transform.localScale = new Vector3 (random, random, random);
 		rock.transform.Rotate(0, Random.Range (0, 360), 0);
-		if (rock.transform.position.z < 3.2f && rock.transform.position.z > -6.4f) {
+		if (rock.transform.position.z < 7.6f && rock.transform.position.z > -7.4f) {
 			Destroy (rock.gameObject);
 		}
 		counter++;
