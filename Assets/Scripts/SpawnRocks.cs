@@ -31,7 +31,8 @@ public class SpawnRocks : MonoBehaviour {
 
 	void SpawnRock()
 	{
-		GameObject rock = Instantiate (Resources.Load ("Rock"), new Vector3 (20, -.59f, Random.Range (-20, 20)), Quaternion.Euler (0, 0, 0)) as GameObject;
+		//GameObject rock = Instantiate (Resources.Load ("Rock"), new Vector3 (20, -.59f, Random.Range (-20, 20)), Quaternion.Euler (0, 0, 0)) as GameObject;
+		GameObject rock = Instantiate (Resources.Load ("Rock"), new Vector3 (20, -.59f, Random.Range (-10, 10)), Quaternion.Euler (0, 0, 0)) as GameObject;
 		float random = Random.Range (0.25f, 0.6f);
 		rock.transform.parent = transform;
 		rock.transform.localScale = new Vector3 (random, random, random);
