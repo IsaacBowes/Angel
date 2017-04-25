@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour {
 
+	public LayerMask groundLayer;
+
 	Waves waves;
 	AudioSource aS;
 	public AudioClip userDamagedDown;
@@ -13,15 +15,24 @@ public class CharacterController : MonoBehaviour {
 		waves = GameObject.FindGameObjectWithTag ("WaveManager").GetComponent<Waves> ();
 		aS = transform.GetComponent<AudioSource> ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		Vector3 upAxis = new Vector3(0,0,-1);
 		Vector3 mouseScreenPosition = Input.mousePosition;
 		mouseScreenPosition.z = transform.position.z;
-		Vector3 mouseWorldSpace = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
-		transform.LookAt(mouseWorldSpace, upAxis);
-		transform.eulerAngles = new Vector3(0,transform.eulerAngles.y,0);
+		//Vector3 mouseWorldSpace = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+
+		RaycastHit hit;
+		Ray ray = Camera.main.ScreenPointToRay(mouseScreenPosition);
+
+		if(Physics.Raycast(ray, out hit, 1000f, groundLayer))
+		{
+			transform.LookAt(hit.point, upAxis);
+			transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+		}
+
+
 	}
 
 	void OnCollisionEnter(Collision col)
