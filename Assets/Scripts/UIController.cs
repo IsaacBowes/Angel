@@ -13,6 +13,8 @@ public class UIController : MonoBehaviour
     private bool paused;
     private int state = 1;
 
+	public Text GOWaveText;
+
     GameObject[] pauseObjects;
 
 
@@ -72,6 +74,8 @@ public class UIController : MonoBehaviour
 
     void GameOverActive()
     {
+		GOWaveText.enabled = true;
+		GOWaveText.GetComponent<GOWaveText> ().gameisover = true;
         gameOverPanel.SetActive(true);
     }
 
