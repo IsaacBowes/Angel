@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour {
 	NavMeshAgent agent;
 	public GameObject player;
 	public float speed;
+	public float KnockBack;
 	EnemyHealth enemyhealth;
 	bool paused = false;
 
@@ -47,6 +48,7 @@ public class Enemy : MonoBehaviour {
 	{
 		if (col.tag == "Bullet") {
 			enemyhealth.AffectHealth (-1);
+			transform.position -= transform.forward * KnockBack;
 			Destroy (col.gameObject);
 		}
 	}
