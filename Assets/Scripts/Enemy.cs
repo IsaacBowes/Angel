@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour {
 	public GameObject player;
 	public float speed;
 	EnemyHealth enemyhealth;
+	bool paused = false;
 
 	// Use this for initialization
 	void Start () {
@@ -21,12 +22,24 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (transform.name != "Tier3Enemy(Clone)") {
-			agent.destination = player.transform.position;
-			agent.speed = speed;
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			if (paused) {
+				paused = false;
+			} else {
+				paused = true;
+			}
+		}
+		if (paused) {
+			agent.isStopped = true;
 		} else {
-			transform.position = Vector3.MoveTowards (transform.position, player.transform.position, (speed / 50));
-			transform.LookAt (player.transform.position);
+			if (transform.name != "Tier3Enemy(Clone)") {
+				agent.destination = player.transform.position;
+				agent.speed = speed;
+			}
+			else {
+				transform.position = Vector3.MoveTowards (transform.position, player.transform.position, (speed / 50));
+				transform.LookAt (player.transform.position);
+			}
 		}
 	}
 
