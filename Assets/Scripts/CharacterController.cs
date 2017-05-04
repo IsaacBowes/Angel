@@ -9,11 +9,13 @@ public class CharacterController : MonoBehaviour {
 	Waves waves;
 	AudioSource aS;
 	public AudioClip userDamagedDown;
+	PlayerHealth playerhealth;
 
 	// Use this for initialization
 	void Start () {
 		waves = GameObject.FindGameObjectWithTag ("WaveManager").GetComponent<Waves> ();
 		aS = transform.GetComponent<AudioSource> ();
+		playerhealth = transform.GetComponent<PlayerHealth> ();
 	}
 
 	// Update is called once per frame
@@ -42,6 +44,7 @@ public class CharacterController : MonoBehaviour {
 			transform.GetComponent<PlayerShoot>().Bullets += (col.collider.gameObject.GetComponent<EnemyHealth> ().ammoDrop + 1);
 			aS.PlayOneShot (userDamagedDown);
 			waves.TotalEnemiesInWave -= 1;
+			StartCoroutine (playerhealth.hit ());
 			Destroy (col.gameObject);
 		}
 	}
