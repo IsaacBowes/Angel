@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour {
 			}
 		}
 		if (paused) {
-			agent.isStopped = true;
+			//agent.isStopped = true;
 		} else {
 			if (transform.name != "Tier3Enemy(Clone)") {
 				agent.destination = player.transform.position;
